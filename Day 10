@@ -1,0 +1,35 @@
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+        Map<Integer, Set<Integer> > map = new TreeMap<Integer, Set<Integer>> ();
+        int len = trust.length;
+        int []count = new int[N+1];
+        
+        for(int i=0;i<len;i++){
+            int key = trust[i][0];
+            if(map.containsKey(key)){
+               Set<Integer> set = map.get(key);
+                if (set == null) {
+                set = new HashSet<Integer>();
+                 map.put(key, set);
+                }
+                    set.add(trust[i][1]);
+                    count[trust[i][1]]++;
+                
+            }else{
+                Set<Integer>set = new HashSet<Integer>();
+                set.add(trust[i][1]);
+                map.put(key, set);
+                  count[trust[i][1]]++;
+               
+            }
+        }
+        
+        for(int i=1;i<=N;i++){
+            if(!map.containsKey(i) && count[i] == N-1)
+                return i;
+        }
+        
+        return -1;
+        
+    }
+}
