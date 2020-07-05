@@ -1,0 +1,14 @@
+
+class Solution {
+    public int findComplement(int num) {
+       int temp = num;
+        int sol = 0;
+        while(num > 0){
+            sol = (sol << 1) + 1;
+            num >>= 1;
+        }
+        return sol - temp;
+        
+    }
+    
+}
