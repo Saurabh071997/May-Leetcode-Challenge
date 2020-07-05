@@ -1,0 +1,33 @@
+class Solution {
+   public int check_depth(TreeNode root, int x){
+        
+        if(root == null) 
+            return Integer.MIN_VALUE;
+            
+        if(root.val == x) 
+            return 0;
+        
+        int left = check_depth(root.left, x);
+        int right = check_depth(root.right, x);
+        
+        return 1 + Math.max(left, right);
+    }
+    
+    public TreeNode getparent(TreeNode root, int x){
+        if(root == null) return null;
+        
+        if(root.left != null && root.left.val == x) return root;
+        if(root.right != null && root.right.val == x) return root;
+        
+        TreeNode left = getparent(root.left, x);
+        
+        if(left != null) return left;
+        
+        return getparent(root.right, x);
+    }
+    
+    public boolean isCousins(TreeNode root, int x, int y) {
+        
+        return (check_depth(root, x) == check_depth(root, y) && getparent(root, x) != getparent(root, y));
+    }
+}
