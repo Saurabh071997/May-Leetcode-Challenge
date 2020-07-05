@@ -1,0 +1,23 @@
+class Solution {
+    public int countSquares(int[][] matrix) {
+        
+         int count = 0;
+        
+        if(matrix != null && matrix.length > 0){
+            int R = matrix.length;
+            int C = matrix[0].length;
+            int i, j;
+            int[][] DP = new int[R + 1][C + 1];
+            
+            for(i = 1; i <= R; i++)
+                for(j = 1; j <= C; j++)
+                    if(matrix[i - 1][j - 1] == 1){
+                        DP[i][j] = 1 + Math.min(DP[i - 1][j - 1], Math.min(DP[i][j - 1], DP[i - 1][j]));
+                        count = count + DP[i][j];
+                    }
+        }
+        
+        return count;
+        
+    }
+}
