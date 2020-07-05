@@ -1,0 +1,23 @@
+class Solution {
+    public static int max  = 26;
+    public int firstUniqChar(String s) {
+        int[]count = new int[26];
+        int idx =-1;
+        
+        int n = s.length();
+        for(int i=0;i<n;i++){
+            char c = s.charAt(i);
+            count[c-'a']++;
+        }
+        
+        for(int i=0;i<n;i++){
+            char c = s.charAt(i);
+            if(count[c-'a'] == 1){
+                idx = i;
+                break;
+            }
+        }
+        
+        return idx;
+    }
+}
