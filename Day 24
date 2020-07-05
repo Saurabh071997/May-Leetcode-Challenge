@@ -1,0 +1,27 @@
+class Solution {
+    public TreeNode insertRec(TreeNode root, int val){
+        if(root == null)
+            return new TreeNode(val);
+        
+        else if(val < root.val ){
+            root.left = insertRec(root.left, val);
+        }
+        else if(val > root.val){
+            root.right = insertRec(root.right, val);
+        }
+        
+        return root;
+    }
+    public TreeNode bstFromPreorder(int[] preorder) {
+        if(preorder.length == 0)
+                return null;
+        TreeNode root  = new TreeNode(preorder[0]);
+        
+        for(int i=1;i<preorder.length;i++){
+            root = insertRec(root, preorder[i]);
+        }
+        
+        return root;
+        
+    }
+}
